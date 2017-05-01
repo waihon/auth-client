@@ -19,7 +19,7 @@ import { Link } from 'react-router';
 import Messages from '../notifications/Messages';
 import Errors from '../notifications/Errors';
 
-import { signupRequest } from './actions';
+import signupRequest from './actions';
 
 class Signup extends Component {
   // Pass the correct proptypes in for validation
@@ -58,7 +58,8 @@ class Signup extends Component {
 
     return (
       <div className="signup">
-        <form className="widget-form">
+        { /* Use the Submit handler with our own submit handler */ }
+        <form className="widget-form" onSubmit={handleSubmit(this.submit)}>
           <h1>Sign Up</h1>
           <label htmlFor="email">Email</label>
           {
