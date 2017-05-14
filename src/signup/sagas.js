@@ -1,4 +1,8 @@
-// Sagas to watch for API-related calls
+// Redux Sagas sit between the Actions and Reducers listening for "messages".
+// When they hear about a "message" they "care" about, they take "Actions"
+// into their own hands and go to work. When they've completed their work,
+// they will also dispatch actions.
+// This Saga:
 // 1) Waits until it "sees" the SIGNUP_REQUESTING action dispatched.
 // 2) Calls the signupFlow() with the action received.
 // 3) signupFlow() then run in a generator stepping through each call in a

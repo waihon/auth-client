@@ -24,8 +24,11 @@ import signupRequest from './actions';
 class Signup extends Component {
   // Pass the correct proptypes in for validation
   static propTypes = {
+    // Redux Form
     handleSubmit: PropTypes.func,
+    // Action
     signupRequest: PropTypes.func,
+    // State
     signup: PropTypes.shape({
       requesting: PropTypes.bool,
       successful: PropTypes.bool,
@@ -64,11 +67,15 @@ class Signup extends Component {
           <label htmlFor="email">Email</label>
           {
             /*
-            The Field component below allows Redux Form to automatically bind }
+            The Field component below allows Redux Form to automatically bind
             values to our signup namespace within Redux Form's form state.
-            Alongside the typical form input values, we can also pass it a custom*
-            form component since it accepts a PropType.Node.
+            Alongside the typical form input values, we can also pass it a
+            custom form component since it accepts a PropType.Node.
             Passing it input just informs Redux Form to use the default input.
+            In addition to binding those values, it also hands us a number of
+            preoperties on our component's this.props. This includes real time
+            updated values like whether or not the form is "dirty" or "touched";
+            events for when we "blur" the form; much much more.
             */
           }
           <Field
@@ -88,7 +95,7 @@ class Signup extends Component {
             label="Password"
             component="input"
           />
-          <button action="Submit">Sign Up</button>
+          <button action="submit">Sign Up</button>
         </form>
         <div className="auth-messages">
           {

@@ -43,7 +43,7 @@ const store = createStore(
 sagaMiddleware.run(IndexSagas)
 
 // Set up the top level router component for our React Router
-// Optionally rendering components as the children of our App component,
+// Rendering components as the children of our App component,
 // based on routes.
 ReactDOM.render(
   <Provider store={store}>
