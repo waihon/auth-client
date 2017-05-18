@@ -116,6 +116,7 @@ class Signup extends Component {
               Signup Successful! <Link to="/login">Click here to log in »</Link>
             </div>
           )}
+          {requesting && <div>Signup up...</div>}
           { /* Redux Router's <Link> component for quick navigation of routes */ }
           {!requesting && !successful && (
             <Link to="/login">Already a Widgeter? Click here to log in »</Link>
