@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+
+// Authorization helpers
+import {
+  checkIndexAuthorization,
+  checkWidgetAuthorization
+} from './lib/check-auth';
 
 // Import all of our components
 import App from './App';
@@ -49,9 +55,18 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App} >
+        {/*
+          IndexRoute allows us to referene the above top-level "/" path.
+          If we were to put our check directly on the "/" path, the check
+          would get run on every nested route. Instead we only wat it on
+          the "/" one.
+          We pass store to below authorization helpers so they can intereact
+          with our state and actions via dispatch.
+        */}
+        <IndexRoute onEnter={checkIndexAuthorization(store)} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/widgets" components={Widgets} />
+        <Route onEnter={checkWidgetAuthorization(store)} path="/widgets" components={Widgets} />
       </Route>
     </Router>
   </Provider>,
